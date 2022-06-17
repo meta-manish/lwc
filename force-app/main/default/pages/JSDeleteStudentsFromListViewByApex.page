@@ -1,0 +1,37 @@
+<apex:page controller="JSDeleteRecordsUsingController">
+    <script src="/soap/ajax/53.0/connection.js" type="text/javascript"></script>
+    <script>
+        function deleteSelectedRecords() {
+        Visualforce.remoting.timeout=120000;
+        sforce.connection.sessionId = "{!$Api.Session_ID}";
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        var selectedIDs = urlParams.get('id');
+        
+        Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.JSDeleteRecordsUsingController.deleteStudents}',
+                                                  selectedIDs, handleResult);
+        
+    }
+    function handleResult(result, event){
+        if(result.status){
+            alert('Deleted Successfully');
+            cancel();
+        }
+        else{
+            alert('Something Went Wrong');
+        }                
+    }   
+    
+    function cancel(){
+        window.close();
+    }
+    </script>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons location="BOTTOM">
+                <apex:commandButton onclick="deleteSelectedRecords();" value="Delete"/>
+                <apex:commandButton onclick="cancel();" value="Cancel"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

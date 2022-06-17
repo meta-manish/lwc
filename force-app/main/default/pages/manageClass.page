@@ -1,0 +1,46 @@
+<apex:page standardController="Class__c" recordSetVar="classes" extensions="manageClassExtension">
+    <apex:form id="classList">
+        <apex:pageBlock title="Classes">
+            <apex:pageBlockTable value="{!classes}" var="eachClass">
+                <apex:column headerValue="Action">
+                    <apex:commandLink action="{!editClass}" value="Edit">
+                        <apex:param name="classId" value="{!eachClass.id}"/>
+                    </apex:commandLink>
+                    &nbsp;&nbsp; || &nbsp;&nbsp;
+                    <apex:commandLink action="{!deleteClass}" value="Delete">
+                        <apex:param name="classId" value="{!eachClass.id}"/>
+                    </apex:commandLink>
+                </apex:column>
+                <apex:column value="{!eachClass.Name}"/>
+                <apex:column value="{!eachClass.Teacher__r.Name}" headerValue="Class Teacher"/>
+                <apex:column value="{!eachClass.Board__c}"/>
+                <apex:column value="{!eachClass.Fee__c}"/>
+                <apex:column value="{!eachClass.MaxSize__c}"/>
+                <apex:column value="{!eachClass.NumberOfStudents__c}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+    
+    <apex:form id="editForm" rendered="{!showEditForm}">
+        <apex:pageBlock title="Edit Class" id="editClass">
+            <apex:pageBlockSection columns="2">
+                <apex:inputField value="{!classDetails.Name}"/>
+                <apex:inputField value="{!classDetails.Teacher__c}"/>
+                <apex:inputField value="{!classDetails.Detailed_Description__c}"/>
+                <apex:inputField value="{!classDetails.Board__c}"/>
+                <apex:inputField value="{!classDetails.Fee__c}"/>
+                <apex:inputField value="{!classDetails.MaxSize__c}"/>
+                <apex:inputField value="{!classDetails.My_Count__c}"/>
+                <apex:inputField value="{!classDetails.Custom_Status__c}"/>
+            </apex:pageBlockSection>
+            <apex:pageMessages />
+            <apex:pageBlockButtons >
+                <apex:actionFunction action="{!saveChanges}" name="Save" reRender="classList">
+                    <apex:param name="firstParam" assignTo="{!state}" value="" />
+                </apex:actionFunction>
+                <apex:commandButton action="{!saveChanges}" value="Save"/>
+                <apex:commandButton action="{!cancelEdit}" value="Cancel"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

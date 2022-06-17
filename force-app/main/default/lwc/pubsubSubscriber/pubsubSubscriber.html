@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Contacts PubSub Subscriber">
+        <template for:each={contacts.data} for:item="contact">
+            <li key={contact.Id} style="list-style-type: none;">
+                Name - {contact.Name} <br>
+                Email - {contact.Email}
+            </li>
+        </template>
+    </lightning-card>
+</template>

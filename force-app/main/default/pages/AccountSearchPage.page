@@ -1,0 +1,30 @@
+<apex:page controller="AccountSearchController">
+        <apex:form >
+            <apex:pageBlock title="Account Search">
+                <apex:pageBlockSection >
+                    <apex:inputText value="{!searchRecords}" label="Number of Accounts to Show"/>
+                    <apex:inputText value="{!BillingCity }" label="Billing City"/>
+                    <apex:inputText value="{!BillingState }" label="Billing State"/>
+                    <apex:inputText value="{!BillingCountry }" label="Billing Country"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockButtons location="TOP">
+                    <apex:commandButton action="{!search}" value="Search" reRender="account_list"/>
+                </apex:pageBlockButtons>
+            </apex:pageBlock>
+            <apex:pageBlock id="account_list">
+                <apex:pageBlockTable value="{!result}" var="account">
+                    <apex:column value="{!account.Name}"/>
+                    <apex:column value="{!account.BillingCity}"/>
+                    <apex:column value="{!account.BillingState}"/>
+                    <apex:column value="{!account.BillingCountry}"/>
+                </apex:pageBlockTable>
+                <apex:pageBlockButtons location="Bottom">
+                    <apex:commandButton value="First" disabled="{!prev}" action="{!FirstPage}" reRender="account_list"/>
+                    <apex:commandButton value="Previous" disabled="{!prev}" action="{!previous}" reRender="account_list"/>
+                    <apex:commandButton value="Next" disabled="{!nxt}" action="{!next}" reRender="account_list"/>
+                    <apex:commandButton value="Last" disabled="{!nxt}" action="{!LastPage}" reRender="account_list"/>
+                </apex:pageBlockButtons>
+                {!pageNumber} of {! CEILING(totalRecords / pageSize) }
+            </apex:pageBlock>
+        </apex:form>
+    </apex:page>

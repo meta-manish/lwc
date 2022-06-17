@@ -1,0 +1,8 @@
+<apex:page standardController="Student__c" extensions="StudentDetailPdfExtension">
+    <apex:form >
+        <apex:pageBlock title="Student Record for - {!Student__c.Name} in {!Student__c.Class__r.Name}">
+            <apex:detail relatedList="false"/>
+        </apex:pageBlock>
+        <apex:commandButton action="{!saveAttachment}" value="Save The PDF in Attachement" id="theCommandButton"/>
+    </apex:form>
+</apex:page>

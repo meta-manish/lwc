@@ -1,0 +1,22 @@
+<apex:page controller="ContactController">
+    <apex:form>
+        <apex:pageBlock>
+            <apex:pageBlockTable value="{!Contacts}" var="contactObj">
+                <apex:column headerValue="Contacts Name">
+                    <a href="#" onclick="handleClick('{!contactObj.Id}');">
+                        {!contactObj.FirstName} {!contactObj.LastName}
+                    </a>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+    <script>
+        var Channel = "{!$MessageChannel.lmsDemo__c}";
+        function handleClick(contactId){
+            const message = {
+                recordId: contactId
+            }
+            sforce.one.publish(Channel, message);
+        }
+    </script>
+</apex:page>

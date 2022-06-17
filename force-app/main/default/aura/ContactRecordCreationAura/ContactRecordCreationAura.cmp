@@ -1,0 +1,16 @@
+<aura:component controller="ContactController" implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <aura:attribute name="contact" type="Contact" default="{'sobjectType':'Contact',
+                                                           'FirstName':'',
+                                                           'LastName':'',
+                                                           'Email':'',
+                                                           'Phone':'',
+                                                           'Fax':''}"/>
+    <aura:attribute name="createdContact" type="String"/>
+    
+    <lightning:input value="{!v.contact.FirstName}" label="First Name" placeholder="First Name"/>
+    <lightning:input value="{!v.contact.LastName}" label="Last Name" placeholder="Last Name"/>
+    <lightning:input value="{!v.contact.Email}" label="Email" placeholder="Email"/>
+    <lightning:input value="{!v.contact.Phone}" label="Phone" placeholder="Phone"/>
+    <lightning:input value="{!v.contact.Fax}" label="Fax" placeholder="Fax"/>
+    <lightning:button variant="brand" label="Save" title="Save" onclick="{!c.createContact}"/>
+</aura:component>

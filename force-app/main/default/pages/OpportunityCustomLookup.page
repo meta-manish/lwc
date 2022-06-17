@@ -1,0 +1,18 @@
+<apex:page standardController="Opportunity" extensions="opportunityLookupExtension">
+    <apex:form >
+        <apex:pageBlock title="Select Bill To Contact for Manager - {!Opportunity.Manager__r.Name}">
+            <apex:pageBlockTable value="{!contacts}" var="contact">
+                <apex:column value="{!contact.Name}"/>
+                <apex:column value="{!contact.Title}"/>
+                <apex:column value="{!contact.Phone}"/>
+                <apex:column headerValue="Select Contact"><input type="radio" name="radioName" id="{!contact.id}" value="{!contact.id}" />
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:pageBlockButtons location="BOTTOM">
+                <apex:commandButton action="{!SaveBillToContact}" value="Save"/>
+                <apex:commandButton action="{!ClearBillToContact}" value="Clear"/>
+                <apex:commandButton action="{!Cancel}" value="Back"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

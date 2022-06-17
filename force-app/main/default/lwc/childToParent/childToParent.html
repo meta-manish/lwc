@@ -1,0 +1,11 @@
+<template>
+    <lightning-card class="slds-p-horizontal_small" title="Parent">
+        <p class="slds-p-horizontal_small">Hello! {name}</p>
+        <p class="slds-p-horizontal_small">
+            <template for:each={parentArray} for:item="element">
+                <li key={element.id}>{element.name}</li>
+            </template>
+        </p>
+        <c-child-component ongetname={handleNameEvent} onbtnclick={handleButtonClick}></c-child-component>
+    </lightning-card>
+</template>

@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Child Component">
+        <div class="slds-p-horizontal_small">
+            <lightning-input type="text" label="Name" value={name} onchange={handleChange}></lightning-input>
+        </div>
+        <div slot="footer">
+            <lightning-button variant="brand" label="Click Me" onclick={handleClick}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

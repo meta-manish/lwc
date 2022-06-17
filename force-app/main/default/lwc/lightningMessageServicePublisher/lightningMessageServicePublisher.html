@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Contact List LMS Publisher">
+        <p class="slds-p-horizontal_small">
+            <template for:each={contactList} for:item="contact">
+                <li key={contact.Id} data-value={contact.Id} onclick={handleClick} style="list-style:none">
+                    {contact.FirstName}
+                </li>
+            </template>
+        </p>
+    </lightning-card>
+</template>

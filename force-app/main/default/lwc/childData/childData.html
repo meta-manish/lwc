@@ -1,0 +1,16 @@
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="standard:people" size="small"></lightning-icon>
+            Child
+        </h3>
+        <p class="slds-p-horizontal_small">
+            Hello!! {name}
+        </p>
+        <p class="slds-p-horizontal_small">
+            <template for:each={childArray} for:item="element">
+                <li style="list-style-type: none;" key={element.id}>{element.id} - {element.name}</li>
+            </template>
+        </p>
+    </lightning-card>
+</template>

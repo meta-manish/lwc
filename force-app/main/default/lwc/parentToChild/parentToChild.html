@@ -1,0 +1,21 @@
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+            Parent to Child 
+        </h3>
+    </lightning-card>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="standard:customers" size="small"></lightning-icon>
+            Parent Component
+        </h3>
+        <div slot="footer">
+            <lightning-button variant="brand" label="Click Me" onclick={handleClick}></lightning-button>
+        </div>
+        <p class="slds-p-horizontal_small">
+            <lightning-input type="text" label="Name" value={nameProperty} onchange={handleNameChange}></lightning-input>
+        </p>
+        <c-child-data name={nameProperty} child-array={arr}></c-child-data>
+    </lightning-card>
+</template>

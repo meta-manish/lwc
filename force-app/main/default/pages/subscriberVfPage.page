@@ -1,0 +1,29 @@
+<apex:page controller="ContactController">
+    <script>
+        var Channel;
+        var subscriptionToChannel;
+        window.onload = function(){
+            Channel = "{!$MessageChannel.lmsDemo__c}";
+            subscribeChannel();
+        }
+        function subscribeChannel(){
+            if(!subscriptionToChannel) {
+                subscriptionToChannel = sforce.one.subscribe(Channel, onSubscription, { scope: "APPLICATION" })
+            }
+        }
+        function onSubscription(message){
+            showContactDetail(message.recordId);
+        }
+    </script>
+    <apex:form>
+        <apex:actionFunction name="showContactDetail" action="{!retrieveContactDetail}" rerender="contactDetail">
+            <apex:param name="contactId" value="" assignTo="{!contactId}"/>         
+        </apex:actionFunction> 
+        <apex:pageBlock title="Contact Detail" id="contactDetail">
+            <apex:pageBlockSection>
+                <apex:outputField value="{!contactObj.FirstName}"/>
+                <apex:outputField value="{!contactObj.Email}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

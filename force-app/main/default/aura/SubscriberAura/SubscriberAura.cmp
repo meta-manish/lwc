@@ -1,0 +1,12 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="contactId" type="String"/>
+    <lightning:messageChannel type="lmsDemo__c" onMessage="{!c.handleChanged}" scope="APPLICATION"/>
+    <lightning:card title="Aura Subscriber">
+        <lightning:recordViewForm recordId="{!v.contactId}" objectApiName="Contact">
+            <div class="slds-box">
+                <lightning:outputField fieldName="Name"/>
+                <lightning:outputField fieldName="Email"/>
+            </div>
+        </lightning:recordViewForm>
+    </lightning:card>
+</aura:component>	

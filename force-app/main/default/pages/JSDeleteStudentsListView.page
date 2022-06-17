@@ -1,0 +1,33 @@
+<apex:page >
+    <script src="/soap/ajax/53.0/connection.js" type="text/javascript"></script>
+    <script>
+        function deleteSelectedRecords(){
+        sforce.connection.sessionId = "{!$Api.Session_ID}";
+        const URLString = window.location.search;
+        
+        const urlParams = new URLSearchParams(URLString);
+        var allSelectedIDs = urlParams.get('id').split(',');
+        
+        sforce.connection.deleteIds([allSelectedIDs], {onSuccess : success, onFailure : failure });
+        
+        function success(result){
+            alert('Deleted Succesfully');
+            cancel();
+        }
+        function failure(error){
+            alert(error);
+        }
+    }
+    function cancel(){
+        window.close();
+    }
+    </script>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons location="BOTTOM">
+                <apex:commandButton onclick="deleteSelectedRecords();" value="Delete"/>
+                <apex:commandButton onclick="cancel();" value="Cancel"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
